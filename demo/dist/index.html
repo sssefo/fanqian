@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f7f3ea"><link rel="icon" href="/food-placeholder.svg"><title>饭签 · 这一餐，交给饭签</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <a class="brand" href="/" aria-label="饭签首页"><span class="brand-mark" aria-hidden="true">签</span><span>饭签<small>FANQIAN · GOOD FOOD, GOOD MOOD</small></span></a>
+  <nav aria-label="主要导航"><button class="nav active" id="nav-draw">抽一餐</button><button class="nav" id="nav-records">吃饭记录</button></nav>
+  <button class="icon-button" id="settings-button" aria-label="设置"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16M8 4v6M16 14v6"/></svg></button>
+</header>
+<div id="storage-banner" class="notice" hidden><span id="storage-message"></span><button id="retry-save">重试保存</button></div>
+<main>
+<section id="draw-view">
+  <div class="intro"><div><p class="eyebrow">A LITTLE LUCK FOR YOUR NEXT MEAL</p><h1>这一餐，<span>交给饭签。</span></h1><p class="intro-copy">纠结先放一边，把好好吃饭留给今天。</p></div><div class="edition"><span>当前门店</span><b id="edition-store">万达广场</b><small>LOCAL TASTE / 001</small></div></div>
+  <div class="main-grid">
+    <div class="stage-wrap">
+      <div class="category-tabs" role="group" aria-label="抽取类别"><button id="category-meal" aria-pressed="true">吃一餐</button><button id="category-snack" aria-pressed="false">来点小吃</button><button id="category-drink" aria-pressed="false">喝点什么</button></div><div class="stage-heading"><span><i class="live-dot"></i> 麦当劳餐食签</span><button class="text-button" id="menu-button">看看签池 <span id="pool-count">—</span> ↗</button></div>
+      <div class="stage" id="stage"><div class="stage-top"><span>今日宜 · 好好吃饭</span><span class="tiny">ONE MEAL AT A TIME</span></div>
+        <div class="stamp" aria-hidden="true">好<br>好<br>吃<br>饭</div>
+        <div id="idle-art" class="idle-art"><div class="plate"><img id="hero-food" alt="" src="/food-placeholder.svg"></div><span class="lucky-label">等一个好签</span></div>
+        <div id="reel-window" class="reel-window" hidden><div class="pointer"></div><div class="reel" id="reel"></div></div>
+        <article id="result-card" class="result-card" hidden aria-live="polite"><span id="rarity-label" class="rarity-label"></span><img id="result-image" alt=""><h2 id="result-name"></h2><p id="result-price"></p><p id="result-caption"></p></article>
+        <div class="roll-track" aria-hidden="true"><span id="roll-progress"></span></div><p class="stage-note" id="stage-note">普通的一餐，也能金光登场。</p>
+      </div>
+      <div class="draw-actions"><button class="primary draw-button" id="draw-button" disabled><span>抽一餐</span><span aria-hidden="true">↗</span></button><button class="primary" id="accept-button" hidden>就吃这个</button><button class="secondary" id="redraw-button" hidden>换一道</button></div>
+      <div id="result-extras" class="result-extras" hidden><button class="text-button" id="detail-button">看看套餐搭配</button><button class="text-button" id="exclude-button">以后不抽到</button></div>
+      <div class="rarity-legend" aria-label="卡面概率"><span class="blue">日常 65%</span><span class="purple">惊喜 25%</span><span class="red">隐藏 8%</span><span class="gold">金色 2%</span></div>
+      <p class="fineprint">卡面独立随机，无保底。品质仅为视觉效果。</p>
+    </div>
+    <aside class="side">
+      <section class="store-card"><div class="card-kicker">这一餐，从这里开始 <span>01</span></div><div class="location-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h2 id="store-name">正在读取门店</h2><button class="text-button" id="change-store">换一家门店 ↗</button><p id="store-address">呼和浩特 · 万达广场</p><div class="store-bottom"><span id="menu-status">正在读取真实菜单…</span><button class="text-button" id="refresh-button">更新 ↻</button></div><p class="fineprint">到店菜单快照，价格与供应以门店为准。</p></section>
+      <section class="last-card"><div class="card-kicker">上次你选了 <span>02</span></div><h3 id="last-name">下一餐，留个念想。</h3><p id="last-note">选定后会留在这里，吃完再记一笔。</p><button class="secondary full" id="record-last" disabled>吃了，记一笔 <span aria-hidden="true">＋</span></button><button class="secondary full" id="order-last" disabled>去下单 · 到店自取 ↗</button></section>
+      <button class="review-link" id="review-link"><span>吃过的，都算数。<small>看看这周的吃饭记录</small></span><span aria-hidden="true">↗</span></button>
+    </aside>
+  </div>
+  <section class="bottom-strip"><span>抽一道 <b>01</b></span><i></i><span>吃完记一餐 <b>02</b></span><i></i><span>回顾小日常 <b>03</b></span></section>
+</section>
+<section id="records-view" hidden>
+  <div class="intro"><div><p class="eyebrow">A SMALL DIARY OF GOOD MEALS</p><h1>吃过的，<span>都算数。</span></h1><p class="intro-copy">只记录你确认吃过的那一餐。</p></div><button class="primary" id="add-record">＋ 补记一餐</button></div>
+  <div class="records-toolbar"><div class="segmented"><button id="week-button" class="selected" aria-pressed="true">本周</button><button id="month-button" aria-pressed="false">本月</button></div><span id="date-range"></span></div>
+  <div class="review-grid"><section class="summary-card"><p class="eyebrow">好好吃饭的小记录</p><p class="count"><strong id="record-count">0</strong> 条记录</p><span>根据你记录的用餐整理</span><div id="kind-summary" class="kind-summary"></div><div id="top-meals"></div></section><section class="record-list" id="record-list"></section></div>
+  <p class="fineprint record-disclaimer">记录只保存在当前浏览器，清理浏览器数据可能丢失。未记录不代表没吃饭。</p>
+</section>
+</main><footer><span>饭签 · 给选择一点小运气</span><span>本地体验版 · 独立开发，非麦当劳官方产品</span></footer>
+</div>
+<dialog id="settings-dialog"><div class="dialog-head"><h2>按你的习惯来</h2><button class="close" data-close aria-label="关闭设置">×</button></div><label class="toggle-row">抽签声音<input type="checkbox" id="sound-input"></label><label class="toggle-row">简化动效<input type="checkbox" id="motion-input"></label><p class="muted">蓝 65% · 紫 25% · 红 8% · 金 2%。每次独立，无保底，与餐品价格无关。</p></dialog>
+<dialog id="menu-dialog"><div class="dialog-head"><h2>我的签池</h2><button class="close" data-close aria-label="关闭签池">×</button></div><p class="muted">当前类别的餐品。不含需额外购卡或特定身份的优惠选项。</p><div id="menu-list"></div><button class="secondary full" id="restore-menu">恢复全部套餐</button></dialog>
+<dialog id="meal-dialog"><div class="dialog-head"><h2 id="form-title">吃了，记一笔</h2><button class="close" data-close aria-label="关闭记录表单">×</button></div><form id="meal-form"><label>这餐吃了什么<input id="meal-name" name="mealName" required maxlength="80" autocomplete="off" placeholder="例如：麦辣鸡腿汉堡三件套"></label><label>记录类别<select id="meal-kind"><option value="meal">正餐</option><option value="snack">小吃甜品</option><option value="drink">饮品</option></select></label><div class="form-row"><label>用餐日期<input id="meal-date" type="date" required></label><label>餐次<select id="meal-slot"><option value="breakfast">早餐</option><option value="lunch">午餐</option><option value="dinner">晚餐</option><option value="other">其他</option></select></label></div><p id="form-error" class="error" role="alert"></p><button class="primary full" type="submit" id="save-record">保存这一餐</button><button class="text-button danger full" type="button" id="delete-record" hidden>删除这条记录</button></form></dialog>
+<dialog id="detail-dialog"><div class="dialog-head"><h2>套餐默认搭配</h2><button class="close" data-close aria-label="关闭套餐详情">×</button></div><div id="detail-content"></div><p class="muted">搭配与价格以门店为准；此处仅展示，不会下单。</p></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<dialog id="result-dialog" class="result-popup" aria-labelledby="result-name">
+<button class="popup-close" id="close-result" aria-label="关闭结果卡">×</button>
+<div id="popup-particles" aria-hidden="true"></div>
+<div class="popup-card"><p class="popup-kicker" id="popup-kind">单人套餐</p>
+<div class="mystery-face" aria-hidden="true"><span>GOLDEN MOMENT</span><b>？</b><p>金色好签，正在揭晓</p></div>
+<div id="popup-content"></div><button class="secondary" id="result-order" hidden>选定并去下单 ↗</button><p class="popup-footnote">卡面品质为随机视觉效果，与价格无关</p></div>
+</dialog>
+<dialog id="checkout-dialog" aria-labelledby="checkout-title">
+<div class="dialog-head"><h2 id="checkout-title">确认到店自取订单</h2><button class="close" id="checkout-close" aria-label="关闭订单确认">×</button></div>
+<p class="checkout-account">使用本机配置的麦当劳账号下单 · 支付在麦当劳完成</p>
+<p id="checkout-store"></p><h3 id="checkout-meal"></h3>
+<div id="checkout-defaults"></div>
+<div id="checkout-inputs"><label>数量<input id="checkout-quantity" type="number" min="1" max="10" value="1"></label>
+<button class="secondary full" id="checkout-requote">重新计算价格</button>
+<label>优惠方案<select id="checkout-coupons"></select></label><p id="checkout-coupon-note"></p><label>取餐方式<select id="checkout-way"></select></label>
+<p class="checkout-total">实时应付 <strong id="checkout-total">—</strong></p>
+<p id="checkout-expiry" class="muted"></p>
+<label class="checkout-confirm"><input type="checkbox" id="checkout-confirm">我已核对门店、餐品、默认搭配、优惠方案和金额，确认创建真实订单</label>
+<button class="primary full" id="checkout-submit" disabled>确认并提交订单</button></div>
+<p id="checkout-message" role="status"></p>
+<div id="checkout-receipt" hidden><p id="checkout-order-id"></p><p id="checkout-order-status"></p>
+<a id="checkout-pay" class="primary payment-link" target="_blank" rel="noopener noreferrer" hidden>前往麦当劳支付 ↗</a>
+<button class="secondary full" id="checkout-status">我已支付，查询订单状态</button><p class="muted">没有可用支付链接时，请打开麦当劳 App 查看并支付。下单不会自动计入用餐记录。</p></div>
+</dialog><dialog id="store-search-dialog" aria-labelledby="store-search-title"><div class="dialog-head"><h2 id="store-search-title">选一家附近的门店</h2><button class="close" data-close aria-label="关闭门店选择">×</button></div>
+<form id="store-search-form"><div class="form-row"><label>城市<input id="store-city" value="呼和浩特" required maxlength="80"></label><label>附近地点<input id="store-keyword" value="万达广场" required maxlength="80" placeholder="商场、街道或地标"></label></div><button class="primary full" id="store-search-button">搜索附近门店</button></form><p class="muted">按你填写的地点查询到店门店，暂不使用手机定位。</p><p id="store-search-message" role="status"></p><div id="store-search-results"></div></dialog><script type="module" src="/app.mjs"></script></body></html>

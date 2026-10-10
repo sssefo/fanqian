@@ -1,0 +1,18 @@
+{
+  "name": "fanqian",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "饭签：真实菜单抽餐与周月用餐回顾",
+  "author": "lining19920728-hub",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check:config": "node scripts/check-mcp.mjs --check-config",
+    "check:mcp": "node scripts/check-mcp.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "dev": "node demo/server.mjs",
+    "setup": "node scripts/setup-menu.mjs"
+  }
+}

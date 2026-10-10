@@ -1,0 +1,3 @@
+# Preserve the required official declaration exactly across Windows checkouts.
+CONTEST_DECLARATION.md -text
+*.png binary
